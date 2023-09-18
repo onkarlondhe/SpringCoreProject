@@ -1,0 +1,35 @@
+package com.mzos.config;
+
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.mzos.bean.Employee;
+import com.mzos.service.EmployeeService;
+
+public class EmployeeExecuter {
+
+	public static void main(String[] args) {
+
+		ApplicationContext context = new AnnotationConfigApplicationContext(EmployeeConfig.class);
+		
+		EmployeeService service = context.getBean(EmployeeService.class);
+		
+		System.out.println("Getting All Employees..");
+		
+		service.getAllEmployees();
+		
+		System.out.println("insert Employee Details");
+		
+		Scanner sc = new Scanner(System.in);
+		
+		service.addEmployee(new Employee(sc.nextInt(), sc.nextLine(), sc.nextLine()));
+//		
+//		System.out.println("enter employeeId to search for");
+//		
+//		service.employeeById();
+		
+	}
+
+}
